@@ -1,0 +1,93 @@
+{
+  "examples": [
+    {
+      "transcript": "Host: Welcome back to \"Laugh Track\"! I'm your host Jimmy Carter - no, not that one!\n[Laughter]\nHost: Today we're talking about the weirdest things that happened to us at supermarkets. Sarah, you've got a story?\nSarah: Oh my god, yes! So there I was in the produce section, right? Just minding my business, trying to figure out if an avocado was ripe...\nHost: The eternal question!\nSarah: And this guy comes up to me, completely serious, and asks if I know where they keep the \"fresh emails\"\n[Laughter]\nHost: Fresh... emails?\nSarah: Yeah! Turns out he meant Gmail, but thought it was some kind of grain!\n[Extended laughter]\nHost: That's amazing! Speaking of confusion, Mike, didn't you have that incident with the self-checkout?\nMike: Don't even get me started on the self-checkout! It's like they're designed by people who've never actually bought groceries...",
+      "summary": "A comedy podcast episode featuring hosts and guests sharing humorous stories about supermarket experiences. The episode includes anecdotes about confusion over avocados, a misunderstanding about 'Gmail' vs. grain, and complaints about self-checkout machines.",
+      "metadata": {
+        "conversation_type": "COMEDY",
+        "topics": [
+          {
+            "name": "Supermarket experiences",
+            "confidence_score": 0.9
+          },
+          {
+            "name": "Technology confusion",
+            "confidence_score": 0.7
+          },
+          {
+            "name": "Shopping mishaps",
+            "confidence_score": 0.8
+          }
+        ],
+        "key_points": [
+          "Host introduces supermarket mishaps theme",
+          "Story about confusion between Gmail and grain",
+          "Discussion of self-checkout difficulties"
+        ],
+        "speakers": [
+          {
+            "id": "host",
+            "name": "Jimmy",
+            "speaking_time": 45.5
+          },
+          {
+            "id": "guest1",
+            "name": "Sarah",
+            "speaking_time": 62.3
+          },
+          {
+            "id": "guest2",
+            "name": "Mike",
+            "speaking_time": 15.8
+          }
+        ],
+        "duration": 180.0
+      }
+    },
+    {
+      "transcript": "CEO: Good morning everyone, let's begin our Q4 review. Maria, can you walk us through the numbers?\nMaria: Of course. In Q4, we saw a 15% increase in revenue compared to Q3, primarily driven by our new product launch.\nCFO: That's impressive. What about the costs associated with the launch?\nMaria: Marketing expenses were higher than projected, about 22% above budget, but the ROI has been strong.\nCEO: Let's drill down into those marketing numbers. Which channels performed best?\nMaria: Digital channels, particularly social media, showed the highest conversion rates. We're seeing a cost per acquisition of $42, down from $58 last quarter.\nCFO: And what about our profit margins?\nMaria: Despite the increased marketing spend, margins held steady at 28%. We've offset costs through improved supplier agreements.\nCEO: Excellent. Let's discuss Q1 projections...",
+      "summary": "Q4 review meeting discussing financial performance, focusing on a successful product launch. The discussion covers revenue growth, marketing expenses, and profit margins, with particular attention to digital marketing performance and cost optimization.",
+      "metadata": {
+        "conversation_type": "PROFESSIONAL",
+        "topics": [
+          {
+            "name": "Financial Performance",
+            "confidence_score": 0.95
+          },
+          {
+            "name": "Marketing ROI",
+            "confidence_score": 0.85
+          },
+          {
+            "name": "Product Launch",
+            "confidence_score": 0.75
+          }
+        ],
+        "key_points": [
+          "15% revenue increase in Q4",
+          "Marketing expenses 22% above budget",
+          "Cost per acquisition reduced to $42",
+          "Profit margins maintained at 28%"
+        ],
+        "speakers": [
+          {
+            "id": "speaker1",
+            "name": "CEO",
+            "speaking_time": 45.0
+          },
+          {
+            "id": "speaker2",
+            "name": "Maria",
+            "speaking_time": 120.0
+          },
+          {
+            "id": "speaker3",
+            "name": "CFO",
+            "speaking_time": 30.0
+          }
+        ],
+        "duration": 240.0
+      }
+    }
+  ]
+}
