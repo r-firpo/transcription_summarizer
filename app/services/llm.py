@@ -1,5 +1,6 @@
 import json
 import logging
+import re
 from typing import Dict, Any, Optional
 from openai import OpenAI, APITimeoutError, OpenAIError, APIError, RateLimitError, APIConnectionError
 
@@ -81,8 +82,11 @@ class LLMService:
                 max_tokens=max_tokens or self.MAX_TOKENS,
                 temperature=temperature or self.DEFAULT_TEMPERATURE
             )
-
-            output = response.choices[0].message.content
+            output = str()
+            for choice in response.choices:
+                logger.info(choice.message.content)
+                output += " " + choice.message.content
+            output = self._clean_and_parse_json_string(output)
 
             # Log usage statistics
             logger.info(
@@ -161,3 +165,86 @@ class LLMService:
         )
 
         return json.loads(response)
+
+    def _clean_and_parse_json_string(self, input_string) -> str:
+        '''
+        OpenAI gpt-40-mini seems to return strings prepended by backticks which are not valid json, this attempts
+        to handle those cases so that the response can be loaded as valid json in json.loads()
+
+        Example input_string (raw output of gpt-40-mini):
+        ``json
+                {
+                    "conversation_type": "PROFESSIONAL",
+                    "topics": [
+                        {
+                            "name": "Q3 Planning",
+                            "confidence_score": 0.9
+                        },
+                        {
+                            "name": "Sales Projections",
+                            "confidence_score": 0.85
+                        },
+                        {
+                            "name": "Customer Acquisition",
+                            "confidence_score": 0.8
+                        },
+                        {
+                            "name": "Marketing Campaign Results",
+                            "confidence_score": 0.75
+                        },
+                        {
+                            "name": "Conversion Rate Improvement",
+                            "confidence_score": 0.7
+                        }
+                    ],
+                    "key_points": [
+                        "Q2 performance shows a 15% increase in customer acquisition.",
+                        "Sales projections were prepared for the meeting.",
+                        "Organic traffic increased by 12% in the first month of Q2.",
+                        "Conversion rate improved from 2.8% to 3.5%.",
+                        "New landing page design is driving better engagement."
+                    ]
+                }
+                ```
+        Returned string:
+        {
+                    "conversation_type": "PROFESSIONAL",
+                    "topics": [
+                        {
+                            "name": "Q3 Planning",
+                            "confidence_score": 0.9
+                        },
+                        {
+                            "name": "Sales Projections",
+                            "confidence_score": 0.85
+                        },
+                        {
+                            "name": "Customer Acquisition",
+                            "confidence_score": 0.8
+                        },
+                        {
+                            "name": "Marketing Campaign Results",
+                            "confidence_score": 0.75
+                        },
+                        {
+                            "name": "Conversion Rate Improvement",
+                            "confidence_score": 0.7
+                        }
+                    ],
+                    "key_points": [
+                        "Q2 performance shows a 15% increase in customer acquisition.",
+                        "Sales projections were prepared for the meeting.",
+                        "Organic traffic increased by 12% in the first month of Q2.",
+                        "Conversion rate improved from 2.8% to 3.5%.",
+                        "New landing page design is driving better engagement."
+                    ]
+                }
+
+        '''
+        # Remove leading/trailing whitespace
+        cleaned_string = input_string.strip()
+
+        # Remove 'json' prefix and triple backticks
+        cleaned_string = re.sub(r'^(```)?json?\s*', '', cleaned_string, flags=re.IGNORECASE)
+        cleaned_string = re.sub(r'```$', '', cleaned_string)
+        return cleaned_string
