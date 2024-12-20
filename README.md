@@ -76,6 +76,8 @@ uvicorn app.app:app --host 0.0.0.0 --port 80
 ### Debug Endpoints
 - `POST /v1/debug/force-cleanup`: Force cleanup of expired jobs
 - `POST /v1/debug/create-test-job`: Create a test job
+- `GET /docs`: Built in Swagger docs with sample API usage
+
 
 ### Health Checks
 - `GET /`: Basic alive check
